@@ -69,7 +69,13 @@ function App() {
     <>
       {selectedMeals.map((selectedMeal) => (
         <div>
-          <p>{selectedMeal.strCategory}</p>
+          <img
+            src={selectedMeal.strMealThumb}
+            alt={selectedMeal.strMeal}
+            width="200"
+            height="200"
+          />
+          <p>{selectedMeal.strMeal}</p>
         </div>
       ))}
       <label>Dropdown</label>
@@ -101,7 +107,6 @@ function App() {
                 height="200"
               />
             </button>
-
             <p>{meal.strMeal}</p>
           </div>
         ))
