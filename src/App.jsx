@@ -7,6 +7,7 @@ import { uiSliceActions } from "./store/uiSlice.js";
 import { mealActions } from "./store/mealSlice.js";
 import { selectedMealActions } from "./store/selectedMealSlice.js";
 import "./App.css";
+import SelectedMeals from "./components/SelectedMeals.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ function App() {
   );
   const meals = useSelector((state) => state.meals.meals);
   const categories = useSelector((state) => state.category.categories);
-  const selectedMeals = useSelector((state) => state.selectedMeal.meals);
+
   // Fetch all meal categories on first mount
   useEffect(() => {
     async function fetchMealCategories() {
@@ -67,17 +68,7 @@ function App() {
   }, [selectedCategory, dispatch]);
   return (
     <>
-      {selectedMeals.map((selectedMeal) => (
-        <div>
-          <img
-            src={selectedMeal.strMealThumb}
-            alt={selectedMeal.strMeal}
-            width="200"
-            height="200"
-          />
-          <p>{selectedMeal.strMeal}</p>
-        </div>
-      ))}
+      <SelectedMeals />
       <label>Dropdown</label>
       <select
         value={selectedCategory}
