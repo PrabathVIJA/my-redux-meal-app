@@ -1,5 +1,7 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { selectedMealActions } from "../store/selectedMealSlice";
 export default function SelectedMeals() {
+  const dispatch = useDispatch();
   const selectedMeals = useSelector((state) => state.selectedMeal.meals);
 
   return (
@@ -12,6 +14,13 @@ export default function SelectedMeals() {
             width="200"
             height="200"
           />
+          <button
+            onClick={() =>
+              dispatch(selectedMealActions.removeMeal(selectedMeal.idMeal))
+            }
+          >
+            Remove
+          </button>
           <p>{selectedMeal.strMeal}</p>
         </div>
       ))}

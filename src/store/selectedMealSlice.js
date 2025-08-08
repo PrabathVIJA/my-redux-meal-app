@@ -5,6 +5,10 @@ const selectedMealSlice = createSlice({name:'selectedMeal',initialState:{meals:[
         if(!exist){
             state.meals.push(action.payload)
         } 
+    },
+    removeMeal:(state,action)=>{
+    state.meals = state.meals.filter((meal)=> meal.idMeal !== action.payload );
+ 
     }
 }})
 
