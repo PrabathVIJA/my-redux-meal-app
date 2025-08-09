@@ -8,6 +8,7 @@ import { mealActions } from "./store/mealSlice.js";
 import { selectedMealActions } from "./store/selectedMealSlice.js";
 import "./App.css";
 import SelectedMeals from "./components/SelectedMeals.jsx";
+import { fetchMealCategories } from "./store/categorySlice.js";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,23 +21,7 @@ function App() {
 
   // Fetch all meal categories on first mount
   useEffect(() => {
-    async function fetchMealCategories() {
-      try {
-        const res = await fetch(
-          "https://www.themealdb.com/api/json/v1/1/list.php?c=list"
-        );
-        if (!res.ok) {
-          throw new Error("Requested Category not found");
-        }
-        const categoryList = await res.json();
-
-        dispatch(categoryActions.setCategories(categoryList.meals));
-        toast.info("fetching data from api");
-      } catch (e) {
-        toast.error(e.message);
-      }
-    }
-    fetchMealCategories();
+    dispatch(fetchMealCategories());
   }, [dispatch]);
 
   useEffect(() => {
